@@ -18,9 +18,12 @@ const Cell: React.FC<CellProps> = ({
   data,
   clickCell
 }: CellProps) => {
-  let color = (row + col) % 2 === 0 ? "rgb(100, 91, 91)" : "rgb(128, 117, 117)";
-  if (!data.isOpen) {
-    color = (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";
+  let color = "";
+  if (!data.isMined) {
+    color = (row + col) % 2 === 0 ? "rgb(100, 91, 91)" : "rgb(128, 117, 117)";
+    if (!data.isOpen) {
+      color = (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";
+    }
   }
 
   return (

@@ -4,8 +4,8 @@ import { generateField } from "../logic/generateField";
 import { stat } from "fs";
 
 export const initialState: MyTypes.GameModel = {
-  difficult: "easy",
-  field: generateField("easy")
+  difficult: "hard",
+  field: generateField("hard")
 };
 
 export const gameReducer = (
