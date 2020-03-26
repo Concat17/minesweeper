@@ -1,17 +1,20 @@
 import * as React from "react";
 import * as MyTypes from "MyTypes";
 
-import FieldRow from "../Field/FieldRow/FieldRow";
-
 import "./Field.css";
 import Cell from "../Cell/Cell";
 
 interface FieldProps {
   cellSize: string;
   field: MyTypes.CellModel[][];
+  clickCell: (row: number, col: number) => object;
 }
 
-const Field: React.FC<FieldProps> = ({ cellSize, field }: FieldProps) => {
+const Field: React.FC<FieldProps> = ({
+  cellSize,
+  field,
+  clickCell
+}: FieldProps) => {
   let row = -1;
   return (
     <div className="field">
@@ -29,6 +32,7 @@ const Field: React.FC<FieldProps> = ({ cellSize, field }: FieldProps) => {
                   row={row}
                   col={col}
                   data={field[row][col]}
+                  clickCell={clickCell}
                 />
               );
             })}

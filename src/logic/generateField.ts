@@ -1,16 +1,21 @@
 import * as MyTypes from "MyTypes";
 
-type FieldSize = {
+type FieldParams = {
   width: number;
   height: number;
+  mines: number;
+};
+
+const cell = (): MyTypes.CellModel => {
+  return { isOpen: false, isMined: false };
 };
 
 export function generateField(difficult: string): MyTypes.CellModel[][] {
-  const size: FieldSize = setSize(difficult);
+  const params: FieldParams = setParams(difficult);
   let field = [];
-  for (let i = 0; i < size.height; i++) {
+  for (let i = 0; i < params.height; i++) {
     const row = [];
-    for (let j = 0; j < size.width; j++) {
+    for (let j = 0; j < params.width; j++) {
       row.push(cell());
     }
     field.push(row);
@@ -18,19 +23,15 @@ export function generateField(difficult: string): MyTypes.CellModel[][] {
   return field;
 }
 
-function setSize(difficult: string): FieldSize {
+function setParams(difficult: string): FieldParams {
   switch (difficult) {
     case "easy":
-      return { width: 10, height: 8 };
+      return { width: 10, height: 8, mines: 10 }; // 10
     case "medium":
-      return { width: 18, height: 14 };
+      return { width: 18, height: 14, mines: 40 }; // 40
     case "hard":
-      return { width: 24, height: 20 };
+      return { width: 24, height: 20, mines: 99 }; // 99
     default:
       throw new Error("Incorrect difficult");
   }
 }
-
-const cell = (): MyTypes.CellModel => {
-  return { isOpen: false, isMined: false };
-};

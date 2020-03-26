@@ -8,21 +8,27 @@ interface CellProps {
   row: number;
   col: number;
   data: MyTypes.CellModel;
+  clickCell: (row: number, col: number) => object;
 }
 
-const Cell: React.FC<CellProps> = ({ size, row, col, data }: CellProps) => {
-  const color =
-    (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";
+const Cell: React.FC<CellProps> = ({
+  size,
+  row,
+  col,
+  data,
+  clickCell
+}: CellProps) => {
+  let color = (row + col) % 2 === 0 ? "rgb(100, 91, 91)" : "rgb(128, 117, 117)";
+  if (!data.isOpen) {
+    color = (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";
+  }
+
   return (
     <div
-      onClick={() => {
-        console.log(row + " " + col);
-      }}
       className="cell"
       style={{ background: color, width: size, height: size }}
-    >
-      {data.isMined ? "mine" : "nope"}
-    </div>
+      onMouseDown={() => clickCell(row, col)}
+    ></div>
   );
 };
 

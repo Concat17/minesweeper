@@ -7,18 +7,24 @@ import Header from "../components/Header/Header";
 import Background from "../components/Background/Background";
 
 import "./Game.css";
+import { actionTypes } from "../actions/actions";
 
 interface GameProps {
   difficult: string;
   field: MyTypes.CellModel[][];
+  clickCell: (row: number, col: number) => object;
 }
 
-const Game: React.FC<GameProps> = ({ difficult, field }: GameProps) => {
+const Game: React.FC<GameProps> = ({
+  difficult,
+  field,
+  clickCell
+}: GameProps) => {
   const cellSize = setCellSize(difficult);
   return (
     <div className="game">
       <Header>{difficult}</Header>
-      <Background cellSize={cellSize} field={field} />
+      <Background cellSize={cellSize} field={field} clickCell={clickCell} />
     </div>
   );
 };
@@ -30,7 +36,13 @@ const MapStateToProps = (store: MyTypes.ReducerState) => {
   };
 };
 
-const MapDispatchToProps = (dispatch: Dispatch<MyTypes.RootAction>) => ({});
+const MapDispatchToProps = (dispatch: Dispatch<MyTypes.RootAction>) => ({
+  clickCell: (row: number, col: number) =>
+    dispatch({
+      type: actionTypes.CLICKCELL,
+      payload: { row, col }
+    })
+});
 
 export default connect(MapStateToProps, MapDispatchToProps)(Game);
 
