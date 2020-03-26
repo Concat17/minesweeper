@@ -1,0 +1,15 @@
+.field{      
+  display: grid; 
+  width: min-content;
+
+  position: relative;
+  left: 50%; 
+  transform: translate(-50%, 0%);
+ 
+}
+
+.field-row{    
+  display: grid; 
+  grid-auto-flow: column; 
+  grid-auto-columns: min-content;
+}

@@ -1,0 +1,9 @@
+.cell{
+  left: 50%;
+  top: 50%;
+
+  width: 25px;
+  height: 25px;
+
+  /* border: 1px ridge rgb(0, 0, 0);  */
+} 

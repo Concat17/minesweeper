@@ -1,0 +1,31 @@
+{
+  "name": "minesweeper",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/masiuciszek/React-TypeScript-Redux-Starter.git",
+  "author": "<demel654@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^13.9.3",
+    "@types/react": "^16.9.25",
+    "@types/react-dom": "^16.9.5",
+    "@types/react-redux": "^7.1.7",
+    "@typescript-eslint/eslint-plugin": "^2.25.0",
+    "@typescript-eslint/parser": "^2.25.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-react": "^7.19.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "typesafe-actions": "^5.1.0",
+    "typescript": "^3.8.3"
+  },
+  "scripts": {
+    "dev": "parcel public/index.html"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^6.10.1"
+  }
+}
