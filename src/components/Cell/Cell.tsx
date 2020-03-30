@@ -31,7 +31,9 @@ const Cell: React.FC<CellProps> = ({
       className="cell"
       style={{ background: color, width: size, height: size }}
       onMouseDown={() => clickCell(row, col)}
-    ></div>
+    >
+      {data.minesAround}
+    </div>
   );
 };
 
