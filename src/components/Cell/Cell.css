@@ -4,6 +4,15 @@
 
   width: 25px;
   height: 25px;
-
+  display: grid;
+  justify-content: center;
+  align-items: center;
   /* border: 1px ridge rgb(100, 91, 91);  */
 } 
+
+.mines-around{  
+  color: rgb(0, 188, 235);
+  font-size: 150%;
+  font-weight: bold;
+  text-shadow: red;
+}

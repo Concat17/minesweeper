@@ -19,11 +19,18 @@ const Cell: React.FC<CellProps> = ({
   clickCell
 }: CellProps) => {
   let color = "";
-  if (!data.isMined) {
-    color = (row + col) % 2 === 0 ? "rgb(100, 91, 91)" : "rgb(128, 117, 117)";
-    if (!data.isOpen) {
-      color = (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";
-    }
+  // if (!data.isMined) {
+  //   color = (row + col) % 2 === 0 ? "rgb(100, 91, 91)" : "rgb(128, 117, 117)";
+  //   if (!data.isOpen) {
+  //     color = (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";
+  //   }
+  // }
+  color = (row + col) % 2 === 0 ? "rgb(100, 91, 91)" : "rgb(128, 117, 117)";
+  if (!data.isOpen) {
+    color = (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";
+  }
+  if (data.isMined && data.isOpen) {
+    color = "black";
   }
 
   return (
@@ -32,7 +39,9 @@ const Cell: React.FC<CellProps> = ({
       style={{ background: color, width: size, height: size }}
       onMouseDown={() => clickCell(row, col)}
     >
-      {data.minesAround}
+      <div className="mines-around">
+        {data.minesAround > 0 ? data.minesAround : ""}
+      </div>
     </div>
   );
 };

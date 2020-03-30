@@ -15,23 +15,23 @@ const Field: React.FC<FieldProps> = ({
   field,
   clickCell
 }: FieldProps) => {
-  let row = -1;
+  let col = -1;
   return (
     <div className="field">
       {field.map(rowField => {
-        row += 1;
-        let col = -1;
+        col += 1;
+        let row = -1;
         return (
-          <div key={row} className="field-row">
+          <div key={col} className="field-row">
             {rowField.map(cell => {
-              col += 1;
+              row += 1;
               return (
                 <Cell
-                  key={col}
+                  key={`${col}${row}`}
                   size={cellSize}
                   row={row}
                   col={col}
-                  data={field[row][col]}
+                  data={field[col][row]}
                   clickCell={clickCell}
                 />
               );

@@ -1,5 +1,5 @@
 import * as MyTypes from "MyTypes";
-import { findMinesAround } from "./openCell";
+import { findMinesAround, OpenCell } from "./openCell";
 
 type FieldParams = {
   width: number;
@@ -15,7 +15,6 @@ export function generateField(difficult: string): MyTypes.CellModel[][] {
   const params: FieldParams = setParams(difficult);
   const field = createField(params);
   addMines(field, params.mines);
-  setMinesAround(field);
   return field;
 }
 
@@ -67,7 +66,7 @@ function findFreeCells(field: MyTypes.CellModel[][]) {
 function setMinesAround(field: MyTypes.CellModel[][]) {
   for (let row = 0; row < field[0].length; row++) {
     for (let col = 0; col < field.length; col++) {
-      field[row][col].minesAround = findMinesAround(field, row, col);
+      field[col][row].minesAround = findMinesAround(field, row, col);
     }
   }
 }
