@@ -13,18 +13,30 @@ interface GameProps {
   difficult: string;
   field: MyTypes.CellModel[][];
   clickCell: (row: number, col: number) => object;
+  markCell: (row: number, col: number) => object;
 }
 
 const Game: React.FC<GameProps> = ({
   difficult,
   field,
-  clickCell
+  clickCell,
+  markCell
 }: GameProps) => {
   const cellSize = setCellSize(difficult);
   return (
-    <div className="game">
+    <div
+      className="game"
+      onContextMenu={e => {
+        e.preventDefault();
+      }}
+    >
       <Header>{difficult}</Header>
-      <Background cellSize={cellSize} field={field} clickCell={clickCell} />
+      <Background
+        cellSize={cellSize}
+        field={field}
+        clickCell={clickCell}
+        markCell={markCell}
+      />
     </div>
   );
 };
@@ -40,6 +52,11 @@ const MapDispatchToProps = (dispatch: Dispatch<MyTypes.RootAction>) => ({
   clickCell: (row: number, col: number) =>
     dispatch({
       type: actionTypes.CLICKCELL,
+      payload: { row, col }
+    }),
+  markCell: (row: number, col: number) =>
+    dispatch({
+      type: actionTypes.MARKCELL,
       payload: { row, col }
     })
 });

@@ -8,7 +8,7 @@ type FieldParams = {
 };
 
 const cell = (): MyTypes.CellModel => {
-  return { isOpen: false, isMined: false, minesAround: 0 };
+  return { isOpen: false, isMined: false, isMarked: false, minesAround: 0 };
 };
 
 export function generateField(difficult: string): MyTypes.CellModel[][] {

@@ -8,12 +8,14 @@ interface FieldProps {
   cellSize: string;
   field: MyTypes.CellModel[][];
   clickCell: (row: number, col: number) => object;
+  markCell: (row: number, col: number) => object;
 }
 
 const Field: React.FC<FieldProps> = ({
   cellSize,
   field,
-  clickCell
+  clickCell,
+  markCell
 }: FieldProps) => {
   let col = -1;
   return (
@@ -33,6 +35,7 @@ const Field: React.FC<FieldProps> = ({
                   col={col}
                   data={field[col][row]}
                   clickCell={clickCell}
+                  markCell={markCell}
                 />
               );
             })}

@@ -11,6 +11,7 @@ declare module "MyTypes" {
   export type CellModel = {
     isOpen: boolean;
     isMined: boolean;
+    isMarked: boolean;
     minesAround: number;
   };
 }

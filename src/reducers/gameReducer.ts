@@ -17,8 +17,16 @@ export const gameReducer = (
     case actionTypes.CLICKCELL: {
       const newField = [...state.field];
       const { row, col } = action.payload;
-      //console.log(`in reducer ${row} ${col}`);
       OpenCell(newField, row, col);
+      return {
+        difficult: state.difficult,
+        field: newField
+      };
+    }
+    case actionTypes.MARKCELL: {
+      const newField = [...state.field];
+      const { row, col } = action.payload;
+      newField[col][row].isMarked = !newField[col][row].isMarked;
       return {
         difficult: state.difficult,
         field: newField

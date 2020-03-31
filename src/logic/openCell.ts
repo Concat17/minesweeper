@@ -40,8 +40,6 @@ export function findMinesAround(
   for (let x = -1; x < 2; x++) {
     for (let y = -1; y < 2; y++) {
       if (row + x < maxX && row + x > -1 && col + y < maxY && col + y > -1) {
-        // console.log(row + x);
-        // console.log(col + y);
         if (field[col + y][row + x].isMined) {
           mines += 1;
         }

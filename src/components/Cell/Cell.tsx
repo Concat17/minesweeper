@@ -9,6 +9,7 @@ interface CellProps {
   col: number;
   data: MyTypes.CellModel;
   clickCell: (row: number, col: number) => object;
+  markCell: (row: number, col: number) => object;
 }
 
 const Cell: React.FC<CellProps> = ({
@@ -16,28 +17,37 @@ const Cell: React.FC<CellProps> = ({
   row,
   col,
   data,
-  clickCell
+  clickCell,
+  markCell
 }: CellProps) => {
   let color = "";
-  // if (!data.isMined) {
-  //   color = (row + col) % 2 === 0 ? "rgb(100, 91, 91)" : "rgb(128, 117, 117)";
-  //   if (!data.isOpen) {
-  //     color = (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";
-  //   }
-  // }
-  color = (row + col) % 2 === 0 ? "rgb(100, 91, 91)" : "rgb(128, 117, 117)";
+
   if (!data.isOpen) {
-    color = (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";
-  }
-  if (data.isMined && data.isOpen) {
-    color = "black";
+    if (data.isMarked) {
+      color = "yellow";
+    } else {
+      color = (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";
+    }
+  } else {
+    if (data.isMined) {
+      color = "black";
+    } else {
+      color = (row + col) % 2 === 0 ? "rgb(100, 91, 91)" : "rgb(128, 117, 117)";
+    }
   }
 
   return (
     <div
       className="cell"
       style={{ background: color, width: size, height: size }}
-      onMouseDown={() => clickCell(row, col)}
+      onMouseDown={(e: React.MouseEvent) => {
+        if (e.button === 0) {
+          e.preventDefault();
+          clickCell(row, col);
+        } else if (e.button === 2) {
+          markCell(row, col);
+        }
+      }}
     >
       <div className="mines-around">
         {data.minesAround > 0 ? data.minesAround : ""}
