@@ -50,7 +50,8 @@ const Cell: React.FC<CellProps> = ({
       }}
     >
       <div className="mines-around">
-        {data.minesAround > 0 ? data.minesAround : ""}
+        {data.minesAround === 0 || data.isMined ? "" : data.minesAround}
+        {/* data.minesAround > 0 ? data.minesAround : "" */}
       </div>
     </div>
   );
