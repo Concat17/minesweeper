@@ -14,7 +14,7 @@ const cell = (): MyTypes.CellModel => {
 export function generateField(difficult: string): MyTypes.CellModel[][] {
   const params: FieldParams = setParams(difficult);
   const field = createField(params);
-  addMines(field, params.mines);
+  //addMines(field, params.mines);
   return field;
 }
 
@@ -43,8 +43,13 @@ function createField(params: FieldParams): MyTypes.CellModel[][] {
   return field;
 }
 
-function addMines(field: MyTypes.CellModel[][], minesCount: number) {
-  const freeCells = findFreeCells(field);
+export function addMines(
+  field: MyTypes.CellModel[][],
+  difficult: string,
+  startCell: object
+) {
+  const { mines: minesCount } = setParams(difficult);
+  const freeCells = findFreeCells(field, startCell);
   for (let i = 0; i < minesCount; i++) {
     let index = Math.floor(Math.random() * freeCells.length);
     let cell = freeCells[index];
@@ -53,20 +58,13 @@ function addMines(field: MyTypes.CellModel[][], minesCount: number) {
   }
 }
 
-function findFreeCells(field: MyTypes.CellModel[][]) {
+function findFreeCells(field: MyTypes.CellModel[][], startCell) {
   const freeCells = [];
   for (let i = 0; i < field.length; i++) {
     for (let j = 0; j < field[i].length; j++) {
-      freeCells.push({ row: i, col: j });
+      if (i != startCell.col && j !== startCell.row)
+        freeCells.push({ row: i, col: j });
     }
   }
   return freeCells;
-}
-
-function setMinesAround(field: MyTypes.CellModel[][]) {
-  for (let row = 0; row < field[0].length; row++) {
-    for (let col = 0; col < field.length; col++) {
-      field[col][row].minesAround = findMinesAround(field, row, col);
-    }
-  }
 }

@@ -1,12 +1,13 @@
 import * as MyTypes from "MyTypes";
 import { actionTypes } from "../actions/actions";
-import { generateField } from "../logic/generateField";
+import { generateField, addMines } from "../logic/generateField";
 import { OpenCell } from "../logic/openCell";
 import { stat } from "fs";
 
 export const initialState: MyTypes.GameModel = {
-  difficult: "easy",
-  field: generateField("easy")
+  isStart: false,
+  difficult: "hard",
+  field: generateField("hard")
 };
 
 export const gameReducer = (
@@ -17,8 +18,18 @@ export const gameReducer = (
     case actionTypes.CLICKCELL: {
       const newField = [...state.field];
       const { row, col } = action.payload;
+      if (!state.isStart) {
+        addMines(newField, state.difficult, { row, col });
+        OpenCell(newField, row, col);
+        return {
+          isStart: !state.isStart,
+          difficult: state.difficult,
+          field: newField
+        };
+      }
       OpenCell(newField, row, col);
       return {
+        isStart: state.isStart,
         difficult: state.difficult,
         field: newField
       };

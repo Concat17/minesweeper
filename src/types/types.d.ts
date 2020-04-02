@@ -4,6 +4,7 @@ declare module "MyTypes" {
   export type RootAction = ActionType<typeof import("../actions/actions")>;
 
   export type GameModel = {
+    isStart: boolean;
     difficult: string;
     field: CellModel[][];
   };
