@@ -8,17 +8,16 @@ type FieldParams = {
 };
 
 const cell = (): MyTypes.CellModel => {
-  return { isOpen: false, isMined: false, isMarked: false, minesAround: 0 };
+  return { isOpen: false, isMined: false, isFlaged: false, minesAround: 0 };
 };
 
 export function generateField(difficult: string): MyTypes.CellModel[][] {
   const params: FieldParams = setParams(difficult);
   const field = createField(params);
-  //addMines(field, params.mines);
   return field;
 }
 
-function setParams(difficult: string): FieldParams {
+export function setParams(difficult: string): FieldParams {
   switch (difficult) {
     case "easy":
       return { width: 10, height: 8, mines: 10 };

@@ -18,12 +18,12 @@ const Cell: React.FC<CellProps> = ({
   col,
   data,
   clickCell,
-  markCell
+  markCell,
 }: CellProps) => {
   let color = "";
 
   if (!data.isOpen) {
-    if (data.isMarked) {
+    if (data.isFlaged) {
       color = "yellow";
     } else {
       color = (row + col) % 2 === 0 ? "rgb(133, 30, 102)" : "rgb(160, 36, 122)";

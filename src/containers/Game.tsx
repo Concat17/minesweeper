@@ -10,27 +10,33 @@ import "./Game.css";
 import { actionTypes } from "../actions/actions";
 
 interface GameProps {
+  flags: number;
   difficult: string;
   field: MyTypes.CellModel[][];
   clickCell: (row: number, col: number) => object;
   markCell: (row: number, col: number) => object;
+  changeDifficulty: (difficulty: string) => object;
 }
 
 const Game: React.FC<GameProps> = ({
+  flags,
   difficult,
   field,
   clickCell,
-  markCell
+  markCell,
+  changeDifficulty,
 }: GameProps) => {
   const cellSize = setCellSize(difficult);
   return (
     <div
       className="game"
-      onContextMenu={e => {
+      onContextMenu={(e) => {
         e.preventDefault();
       }}
     >
-      <Header>{difficult}</Header>
+      <Header flags={flags} changeDifficulty={changeDifficulty}>
+        {difficult}
+      </Header>
       <Background
         cellSize={cellSize}
         field={field}
@@ -43,8 +49,9 @@ const Game: React.FC<GameProps> = ({
 
 const MapStateToProps = (store: MyTypes.ReducerState) => {
   return {
+    flags: store.game.flags,
     difficult: store.game.difficult,
-    field: store.game.field
+    field: store.game.field,
   };
 };
 
@@ -52,13 +59,18 @@ const MapDispatchToProps = (dispatch: Dispatch<MyTypes.RootAction>) => ({
   clickCell: (row: number, col: number) =>
     dispatch({
       type: actionTypes.CLICKCELL,
-      payload: { row, col }
+      payload: { row, col },
     }),
   markCell: (row: number, col: number) =>
     dispatch({
       type: actionTypes.MARKCELL,
-      payload: { row, col }
-    })
+      payload: { row, col },
+    }),
+  changeDifficulty: (difficulty: string) =>
+    dispatch({
+      type: actionTypes.CHANGEDIFFICULTY,
+      payload: { difficulty },
+    }),
 });
 
 export default connect(MapStateToProps, MapDispatchToProps)(Game);

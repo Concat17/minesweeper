@@ -5,6 +5,8 @@ declare module "MyTypes" {
 
   export type GameModel = {
     isStart: boolean;
+    isWasted: boolean;
+    flags: number;
     difficult: string;
     field: CellModel[][];
   };
@@ -12,7 +14,7 @@ declare module "MyTypes" {
   export type CellModel = {
     isOpen: boolean;
     isMined: boolean;
-    isMarked: boolean;
+    isFlaged: boolean;
     minesAround: number;
   };
 }
