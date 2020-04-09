@@ -1,18 +1,67 @@
-.cell{
-  left: 50%;
-  top: 50%;
-
-  width: 25px;
-  height: 25px;
+.cell {
   display: grid;
-  justify-content: center;
   align-items: center;
-  /* border: 1px ridge rgb(100, 91, 91);  */
-} 
+  text-align: center;
+  border: 0px ridge rgb(250, 188, 188);
+}
 
-.mines-around{  
+.mines-around {
   color: rgb(0, 188, 235);
   font-size: 150%;
   font-weight: bold;
-  text-shadow: red;
+  font-family: "Noto Sans", sans-serif;
+}
+
+/* Cell Size */
+
+.small {
+  width: 45px;
+  height: 45px;
+}
+
+.medium {
+  width: 35px;
+  height: 35px;
+}
+
+.big {
+  width: 25px;
+  height: 25px;
+}
+
+/* Cell Color */
+.closed-dark {
+  background-color: rgb(133, 30, 102);
+}
+
+.closed-dark:hover {
+  background-color: rgb(194, 72, 157);
+}
+
+.closed-light {
+  background-color: rgb(160, 36, 122);
+}
+.closed-light:hover {
+  background-color: rgb(194, 72, 157);
+}
+
+.open-dark {
+  background-color: rgb(100, 91, 91);
+}
+
+.open-light {
+  background-color: rgb(128, 117, 117);
+}
+
+.mined {
+  background-color: #000;
+}
+
+.flagged {
+}
+
+.cell-flag {
+  text-align: center;
+  color: rgb(207, 197, 47);
+  font-size: 120%;
 }

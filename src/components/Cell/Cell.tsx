@@ -4,7 +4,7 @@ import * as MyTypes from "MyTypes";
 import "./Cell.css";
 
 interface CellProps {
-  size: string;
+  difficult: string;
   row: number;
   col: number;
   data: MyTypes.CellModel;
@@ -13,7 +13,7 @@ interface CellProps {
 }
 
 const Cell: React.FC<CellProps> = ({
-  size,
+  difficult,
   row,
   col,
   data,
@@ -35,11 +35,11 @@ const Cell: React.FC<CellProps> = ({
       color = (row + col) % 2 === 0 ? "rgb(100, 91, 91)" : "rgb(128, 117, 117)";
     }
   }
+  const cellClass = generateCellCssClass(difficult, row, col, data);
 
   return (
     <div
-      className="cell"
-      style={{ background: color, width: size, height: size }}
+      className={cellClass}
       onMouseDown={(e: React.MouseEvent) => {
         if (e.button === 0) {
           e.preventDefault();
@@ -52,6 +52,9 @@ const Cell: React.FC<CellProps> = ({
       <div className="mines-around">
         {data.minesAround === 0 || data.isMined ? "" : data.minesAround}
       </div>
+      <div className="cell-flag">
+        {data.isFlaged ? <i className="fas fa-flag"> </i> : ""}
+      </div>
     </div>
   );
 };
@@ -59,7 +62,7 @@ const Cell: React.FC<CellProps> = ({
 export default Cell;
 
 function generateCellCssClass(
-  size: string,
+  difficult: string,
   row: number,
   col: number,
   data: MyTypes.CellModel
@@ -69,12 +72,11 @@ function generateCellCssClass(
   if (!data.isOpen) {
     if (data.isFlaged) {
       cellClass += " flagged";
-    } else {
-      cellClass =
-        (row + col) % 2 === 0
-          ? (cellClass += " closed-dark")
-          : (cellClass += " closed-light");
     }
+    cellClass =
+      (row + col) % 2 === 0
+        ? (cellClass += " closed-dark")
+        : (cellClass += " closed-light");
   } else {
     if (data.isMined) {
       cellClass += " mined";
@@ -85,4 +87,23 @@ function generateCellCssClass(
           : (cellClass += " open-light");
     }
   }
+
+  switch (difficult) {
+    case "easy": {
+      cellClass += " small";
+      break;
+    }
+    case "medium": {
+      cellClass += " medium";
+      break;
+    }
+    case "hard": {
+      cellClass += " big";
+      break;
+    }
+    default: {
+      throw new Error("Invalid difficulty");
+    }
+  }
+  return cellClass;
 }

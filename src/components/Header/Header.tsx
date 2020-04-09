@@ -1,7 +1,5 @@
 import * as React from "react";
 
-import DropDown from "../Dropdown/Dropdown";
-
 import "./Header.css";
 
 interface HeaderProps {
@@ -15,23 +13,22 @@ const Header: React.FC<HeaderProps> = ({
 }: HeaderProps) => {
   return (
     <div className="header">
-      <span>{flags}</span>
-      <select
-        className="drodown"
-        onChange={(e) => changeDifficulty(e.target.value)}
-      >
-        <option value="easy">easy</option>
-        <option value="medium">medium</option>
-        <option value="hard">hard</option>
-      </select>
+      <div className="flags">
+        <i className="fas fa-flag fa-2x flag-icon"></i>
+        <div className="flag-count">{flags}</div>
+      </div>
+      <h1 className="title">Minesweeper</h1>
+      <div className="difficult-selector">
+        <div className="difficult-selector-border">
+          <select onChange={(e) => changeDifficulty(e.target.value)}>
+            <option value="easy">easy</option>
+            <option value="medium">medium</option>
+            <option value="hard">hard</option>
+          </select>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Header;
-
-function onChange(select, changeDifficulty) {
-  const value = select.value;
-  changeDifficulty(value);
-  console.log(value);
-}

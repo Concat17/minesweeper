@@ -26,7 +26,6 @@ const Game: React.FC<GameProps> = ({
   markCell,
   changeDifficulty,
 }: GameProps) => {
-  const cellSize = setCellSize(difficult);
   return (
     <div
       className="game"
@@ -38,7 +37,7 @@ const Game: React.FC<GameProps> = ({
         {difficult}
       </Header>
       <Background
-        cellSize={cellSize}
+        difficult={difficult}
         field={field}
         clickCell={clickCell}
         markCell={markCell}
@@ -74,14 +73,3 @@ const MapDispatchToProps = (dispatch: Dispatch<MyTypes.RootAction>) => ({
 });
 
 export default connect(MapStateToProps, MapDispatchToProps)(Game);
-
-function setCellSize(difficult: string): string {
-  switch (difficult) {
-    case "easy":
-      return "60px";
-    case "medium":
-      return "30px";
-    case "hard":
-      return "25px";
-  }
-}

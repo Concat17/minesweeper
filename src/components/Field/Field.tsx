@@ -5,32 +5,32 @@ import "./Field.css";
 import Cell from "../Cell/Cell";
 
 interface FieldProps {
-  cellSize: string;
+  difficult: string;
   field: MyTypes.CellModel[][];
   clickCell: (row: number, col: number) => object;
   markCell: (row: number, col: number) => object;
 }
 
 const Field: React.FC<FieldProps> = ({
-  cellSize,
+  difficult,
   field,
   clickCell,
-  markCell
+  markCell,
 }: FieldProps) => {
   let col = -1;
   return (
     <div className="field">
-      {field.map(rowField => {
+      {field.map((rowField) => {
         col += 1;
         let row = -1;
         return (
           <div key={col} className="field-row">
-            {rowField.map(cell => {
+            {rowField.map((cell) => {
               row += 1;
               return (
                 <Cell
                   key={`${col}${row}`}
-                  size={cellSize}
+                  difficult={difficult}
                   row={row}
                   col={col}
                   data={field[col][row]}
