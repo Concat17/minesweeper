@@ -51,10 +51,38 @@ const Cell: React.FC<CellProps> = ({
     >
       <div className="mines-around">
         {data.minesAround === 0 || data.isMined ? "" : data.minesAround}
-        {/* data.minesAround > 0 ? data.minesAround : "" */}
       </div>
     </div>
   );
 };
 
 export default Cell;
+
+function generateCellCssClass(
+  size: string,
+  row: number,
+  col: number,
+  data: MyTypes.CellModel
+) {
+  let cellClass = "cell";
+  let color = "";
+  if (!data.isOpen) {
+    if (data.isFlaged) {
+      cellClass += " flagged";
+    } else {
+      cellClass =
+        (row + col) % 2 === 0
+          ? (cellClass += " closed-dark")
+          : (cellClass += " closed-light");
+    }
+  } else {
+    if (data.isMined) {
+      cellClass += " mined";
+    } else {
+      cellClass =
+        (row + col) % 2 === 0
+          ? (cellClass += " open-dark")
+          : (cellClass += " open-light");
+    }
+  }
+}
