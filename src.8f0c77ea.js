@@ -115,4 +115,4 @@ var n;function t(n){return(t="function"==typeof Symbol&&"symbol"==typeof Symbol.
 },{"redux":"aVFJ","../reducers":"ZBVL"}],"wGC4":[function(require,module,exports) {
 "use strict";var e=this&&this.__importStar||function(e){if(e&&e.__esModule)return e;var r={};if(null!=e)for(var t in e)Object.hasOwnProperty.call(e,t)&&(r[t]=e[t]);return r.default=e,r},r=this&&this.__importDefault||function(e){return e&&e.__esModule?e:{default:e}};Object.defineProperty(exports,"__esModule",{value:!0});var t=e(require("react")),u=e(require("react-dom")),i=require("react-redux"),o=require("./App"),a=r(require("./store/store"));u.render(t.createElement(i.Provider,{store:a.default},t.createElement(o.App,null)),document.getElementById("root"));
 },{"react":"n8MK","react-dom":"NKHc","react-redux":"jYIL","./App":"R3v4","./store/store":"SD5y"}]},{},["wGC4"], null)
-//# sourceMappingURL=/minesweeper/src.62c16509.js.map
+//# sourceMappingURL=/src.8f0c77ea.js.map
