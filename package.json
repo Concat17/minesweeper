@@ -31,7 +31,7 @@
     "dev": "parcel public/index.html",
     "build": "parcel build public/index.html",
     "test": "jest",
-    "predeploy": "rm -rf dist && parcel build public/index.html",
+    "predeploy": "rm -rf dist && parcel build public/index.html --public-url /minesweeper",
     "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
