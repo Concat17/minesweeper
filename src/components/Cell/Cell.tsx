@@ -49,12 +49,19 @@ const Cell: React.FC<CellProps> = ({
         }
       }}
     >
-      <div className="mines-around">
+      <span className="cell-text">
         {data.minesAround === 0 || data.isMined ? "" : data.minesAround}
-      </div>
-      <div className="cell-flag">
+
+        {data.isFlaged ? <i className="fas fa-flag cell-flag"> </i> : ""}
+        {data.isOpen && data.isMined ? (
+          <i className="fas fa-radiation-alt cell-bomb"></i>
+        ) : (
+          ""
+        )}
+        {/* <div className="cell-flag">
         {data.isFlaged ? <i className="fas fa-flag"> </i> : ""}
-      </div>
+      </div> */}
+      </span>
     </div>
   );
 };
@@ -80,12 +87,11 @@ function generateCellCssClass(
   } else {
     if (data.isMined) {
       cellClass += " mined";
-    } else {
-      cellClass =
-        (row + col) % 2 === 0
-          ? (cellClass += " open-dark")
-          : (cellClass += " open-light");
     }
+    cellClass =
+      (row + col) % 2 === 0
+        ? (cellClass += " open-dark")
+        : (cellClass += " open-light");
   }
 
   switch (difficult) {
