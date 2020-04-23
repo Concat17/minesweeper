@@ -58,9 +58,6 @@ const Cell: React.FC<CellProps> = ({
         ) : (
           ""
         )}
-        {/* <div className="cell-flag">
-        {data.isFlaged ? <i className="fas fa-flag"> </i> : ""}
-      </div> */}
       </span>
     </div>
   );
